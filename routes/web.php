@@ -16,3 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test', function () {
+    $user  = \App\Models\User::create(
+        [
+            'name' => fake()->name,
+            'email' => fake()->email,
+            'phone' => fake()->phoneNumber,
+            'password' => \Illuminate\Support\Facades\Hash::make('secret'),
+        ],
+    );
+
+    return response()->json($user);
+});
